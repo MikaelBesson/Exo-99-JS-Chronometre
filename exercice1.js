@@ -5,35 +5,26 @@
 // Make it count up on a timer, calling this function
 let seconds = document.getElementById("seconds");
 let compteur = 0;
-
-setTimeout(function (){
-    let countUp = function() {
-        if(compteur <=60){
-            seconds.innerHTML = compteur;
-            compteur++;
-        }
-    }
-},1000)
+let stopButton = document.getElementById("stop-button");
 
 
-// setInterval(function (){
-//         if(compteur <=60){
-//         let div2 = document.createElement("div");
-//         result1.append(div2);
-//         result1.style.backgroundColor = "#CCCCFF";
-//         result1.innerHTML = "Le compteur est en marche "+compteur;
-//         compteur++;
-//         }
-//     }, 1000);
-// })
-
-
-
+let countUp = function () {
+    seconds.innerHTML = compteur;
+    compteur++;
+    setTimeout(countUp, 1000);
+}
+countUp();
 
 
 // How can you make it stop counting?
 let stopCountUp = function() {
+    clearInterval(countUp());
 };
-let stopButton = document.getElementById("stop-button");
+
 stopButton.addEventListener("click", stopCountUp);
+
+
+
+
+
 
